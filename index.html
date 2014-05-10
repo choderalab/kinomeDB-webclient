@@ -44,7 +44,7 @@
         </div><!-- panel-heading -->
         <div class='panel-body'>
           <ul>
-            <li>accession code: <span data-bind='text: dbtarget.uniprot.ac'></span></li>
+            <li>accession code: <a data-bind='attr: {href: uniprot_href(), target: "_blank"}'><span data-bind='text: dbtarget.uniprot.ac'></span></a></li>
             <li>entry_name: <span data-bind='text: dbtarget.uniprot.entry_name'></span></li>
             <li>family: <span data-bind='text: dbtarget.uniprot.family'></span></li>
           </ul>
@@ -90,7 +90,7 @@
               </thead>
               <tbody data-bind='foreach: dbtarget.pdb()'>
                 <tr>
-                  <td data-bind='text: pdbid'></td>
+                  <td><a data-bind='attr: {href: pdb_href, target: "_blank"}'><span data-bind='text: pdbid'/></a></td>
                 </tr>
               </tbody>
             </table>
@@ -276,7 +276,7 @@
 
             self.pdb([]);
             for (i in data.pdb) {
-                self.pdb.push({pdbid: data.pdb[i].pdbid});
+                self.pdb.push({pdbid: data.pdb[i].pdbid, pdb_href: 'http://www.rcsb.org/pdb/explore.do?structureID=' + data.pdb[i].pdbid.toLowerCase()});
             };
         };
     }
@@ -290,6 +290,9 @@
         self.dbURI = 'http://ec2-54-227-62-182.compute-1.amazonaws.com/kinomeDBAPI';
         self.dbtarget = new targetModel();
         self.currentTargetAC = ko.observable();
+        self.uniprot_href = ko.computed(function() {
+            return "http://www.uniprot.org/uniprot/" + self.currentTargetAC();
+        });
 
         self.ajax = function(uri, method, data) {
             var request = {
