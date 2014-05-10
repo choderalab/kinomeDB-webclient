@@ -113,7 +113,7 @@
       <h5 class="sidebartitle">Navigation</h5>
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li data-bind="attr: { class: currentPage.type() === 'home' ? 'active' : '' }"><a href=""><i class="fa fa-home"></i><span>Home</span></a></li>
-        <li class="nav-parent"><a data-bind="attr: { href: currentURL() }"><i class="fa fa-crosshairs"></i><span>Example targets</span></a>
+        <li data-bind="attr: { class: currentPage.type() == 'target' ? 'nav-parent active' : 'nav-parent' }"><a data-bind="attr: { href: currentURL() }"><i class="fa fa-crosshairs"></i><span>Example targets</span></a>
           <ul class="children">
             <li data-bind="attr: { class: currentTargetAC() == 'P12931' ? 'active' : '' }"><a href="target/P12931"><i class="fa fa-caret-right"></i>SRC</a></li>
             <li data-bind="attr: { class: currentTargetAC() == 'P00519' ? 'active' : '' }"><a href="target/P00519"><i class="fa fa-caret-right"></i>ABL1</a></li>
