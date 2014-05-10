@@ -136,7 +136,7 @@
     
     <div class="headerbar">
       
-      <a class="menutoggle"><i class="fa fa-bars"></i></a>
+      <a data-bind="attr: { href: currentURL() }" class="menutoggle"><i class="fa fa-bars"></i></a>
       
       <form class="searchform" action="index.html" method="post">
         <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
@@ -145,10 +145,12 @@
       <div class="header-right">
         <ul class="headermenu">
           <li class="btn-group">
-            <button type="button" class="btn btn-default static">
-              <img src="images/choderalab-logo-26x26.png" alt="" />
-                <a target="_blank" href="http://www.choderalab.org">choderalab.org</a>
-            </button>
+            <a target="_blank" href="http://www.choderalab.org">
+              <button type="button" class="btn btn-default static">
+                <img src="images/choderalab-logo-26x26.png" alt="" />
+                choderalab.org
+              </button>
+            </a>
           </li>
         </ul>
       </div><!-- header-right -->
@@ -157,7 +159,7 @@
         
     <div class="pageheader">
       <!-- ko if: currentPage.type() === 'home' -->
-      <h2><i class="fa fa-home"></i>Home</sometext><span>homepage</span></h2>
+      <h2><i class="fa fa-home"></i>Home<span>homepage</span></h2>
       <!-- /ko -->
       <!-- ko if: currentPage.type() === 'target' -->
       <h2><i class="fa fa-crosshairs"></i><sometext data-bind="text: dbtarget.entry_name">Target protein</sometext><span data-bind="text: dbtarget.ac"></span></h2>
