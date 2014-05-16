@@ -24,85 +24,96 @@
 
 <!-- HOMEPAGE view -->
   <script type="text/html" id="home">
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">Welcome to kinomeDB</h4>
-        </div><!-- panel-heading -->
-      </div><!-- panel -->
-    </div><!-- col -->
+    <div class='pageheader'>
+      <h2><i class='fa fa-home'></i>Home<span>homepage</span></h2>
+    </div><!-- pageheader -->
+    <div class="contentpanel">
+      <div class="row"></div>
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Welcome to kinomeDB</h4>
+            </div><!-- panel-heading -->
+          </div><!-- panel -->
+        </div><!-- col -->
+      </div><!-- row -->
+    </div><!-- contentpanel -->
   </script>
 
 <!-- TARGET view -->
   <script type='text/html' id='target'>
 
     <!-- UNIPROT DATA -->
-    <div class='col-sm-4'>
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <h4 class='panel-title'>UniProt</h4>
-        </div><!-- panel-heading -->
-        <div class='panel-body'>
-          <ul>
-            <li>accession code: <a data-bind='attr: {href: uniprot_href(), target: "_blank"}'><span data-bind='text: dbtarget.uniprot.ac'></span></a></li>
-            <li>entry_name: <span data-bind='text: dbtarget.uniprot.entry_name'></span></li>
-            <li>family: <span data-bind='text: dbtarget.uniprot.family'></span></li>
-          </ul>
-        </div><!-- panel-body -->
-      </div><!-- panel -->
-    </div><!-- col -->
+    <div class='pageheader'>
+      <h2><i class='fa fa-crosshairs'></i><sometext data-bind='text: dbtarget.uniprot.entry_name'>Target protein</sometext><span data-bind='text: dbtarget.uniprot.ac'></span></h2>
+    </div><!-- pageheader -->
+    <div class="contentpanel">
+      <div class="row"></div>
 
-    <!-- OTHER DATABASES -->
-    <div class='col-sm-4'>
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <h4 class='panel-title'>Other databases</h4>
-        </div><!-- panel-heading -->
-        <div class='panel-body'>
-          <ul data-bind='foreach: dbtarget.hgnc()'>
-            <li>HGNC Gene ID: <span data-bind='text: gene_id'></span></li>
-            <li>HGNC Approved Symbol: <span data-bind='text: approved_symbol'></span></li>
-          </ul>
-          <ul data-bind='foreach: dbtarget.ncbi_gene()'>
-            <li>NCBI Gene ID: <span data-bind='text: gene_id'></span></li>
-          </ul>
-          <ul data-bind='foreach: dbtarget.ensembl_gene()'>
-            <li>Ensembl Gene ID: <span data-bind='text: gene_id'></span></li>
-          </ul>
-        </div><!-- panel-body -->
-      </div><!-- panel -->
-    </div><!-- col -->
+        <div class='col-sm-4'>
+          <div class='panel panel-default'>
+            <div class='panel-heading'>
+              <h4 class='panel-title'>UniProt</h4>
+            </div><!-- panel-heading -->
+            <div class='panel-body'>
+              <ul>
+                <li>accession code: <a data-bind='attr: {href: uniprot_href(), target: "_blank"}'><span data-bind='text: dbtarget.uniprot.ac'></span></a></li>
+                <li>entry_name: <span data-bind='text: dbtarget.uniprot.entry_name'></span></li>
+                <li>family: <span data-bind='text: dbtarget.uniprot.family'></span></li>
+              </ul>
+            </div><!-- panel-body -->
+          </div><!-- panel -->
+        </div><!-- col -->
+    
+        <!-- OTHER DATABASES -->
+        <div class='col-sm-4'>
+          <div class='panel panel-default'>
+            <div class='panel-heading'>
+              <h4 class='panel-title'>Other databases</h4>
+            </div><!-- panel-heading -->
+            <div class='panel-body'>
+              <ul data-bind='foreach: dbtarget.hgnc()'>
+                <li>HGNC Gene ID: <span data-bind='text: gene_id'></span></li>
+                <li>HGNC Approved Symbol: <span data-bind='text: approved_symbol'></span></li>
+              </ul>
+              <ul data-bind='foreach: dbtarget.ncbi_gene()'>
+                <li>NCBI Gene ID: <span data-bind='text: gene_id'></span></li>
+              </ul>
+              <ul data-bind='foreach: dbtarget.ensembl_gene()'>
+                <li>Ensembl Gene ID: <span data-bind='text: gene_id'></span></li>
+              </ul>
+            </div><!-- panel-body -->
+          </div><!-- panel -->
+        </div><!-- col -->
 
-    <!-- PDB DATA -->
-    <div class='col-sm-4'>
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-          <h4 class='panel-title'>PDB</h4>
-        </div><!-- panel-heading -->
-        <div class='panel-body'>
+        <!-- PDB DATA -->
+        <div class='col-sm-4'>
+          <div class='panel panel-default'>
+            <div class='panel-heading'>
+              <h4 class='panel-title'>PDB</h4>
+            </div><!-- panel-heading -->
+            <div class='panel-body'>
+    
+              <div class="table-responsive">
+                <table class="table" id="pdbtable">
+                  <thead>
+                    <tr>
+                      <th>PDB ID</th>
+                    </tr>
+                  </thead>
+                  <tbody data-bind='foreach: dbtarget.pdb()'>
+                    <tr>
+                      <td><a data-bind='attr: {href: pdb_href, target: "_blank"}'><span data-bind='text: pdbid'/></a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
-          <div class="table-responsive">
-            <table class="table" id="pdbtable">
-              <thead>
-                <tr>
-                  <th>PDB ID</th>
-                </tr>
-              </thead>
-              <tbody data-bind='foreach: dbtarget.pdb()'>
-                <tr>
-                  <td><a data-bind='attr: {href: pdb_href, target: "_blank"}'><span data-bind='text: pdbid'/></a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-
-          <!-- <ul data-bind='foreach: dbtarget.pdb()'> -->
-            <!-- <li>PDB ID: <span data-bind='text: pdbid'></span></li> -->
-          <!-- </ul> -->
-        </div><!-- panel-body -->
-      </div><!-- panel -->
-    </div><!-- col -->
+            </div><!-- panel-body -->
+          </div><!-- panel -->
+        </div><!-- col -->
+      </div><!-- row -->
+    </div><!-- contentpanel -->
   </script>
 
   <script type="text/html" id="alert-example-targets-on-left">
@@ -173,22 +184,25 @@
     </div><!-- leftpanelinner -->
   </div><!-- leftpanel -->
   
-  <div class="mainpanel">
+  <div class='mainpanel'>
     
-    <div class="headerbar">
+    <div class='headerbar'>
       
-      <a data-bind="attr: { href: currentURL() }" class="menutoggle"><i class="fa fa-bars"></i></a>
+      <a data-bind='attr: { href: currentURL() }' class='menutoggle'><i class='fa fa-bars'></i></a>
       
-      <form class="searchform" action="index.html" method="post">
-        <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
+      <!-- <form class='searchform' action='index.html' method='post'> -->
+        <!-- <input type='text' class='form&#45;control' name='keyword' placeholder='Search here...' /> -->
+      <!-- </form> -->
+      <form class='searchform' data-bind='submit: searchHandler'>
+        <input type='text' class='form-control' placeholder='Search here...' data-bind='value: newSearchString' />
       </form>
       
-      <div class="header-right">
-        <ul class="headermenu">
-          <li class="btn-group">
-            <a target="_blank" href="http://www.choderalab.org">
-              <button type="button" class="btn btn-default static">
-                <img src="images/choderalab-logo-26x26.png" alt="" />
+      <div class='header-right'>
+        <ul class='headermenu'>
+          <li class='btn-group'>
+            <a target='_blank' href='http://www.choderalab.org'>
+              <button type='button' class='btn btn-default static'>
+                <img src='images/choderalab-logo-26x26.png' alt='' />
                 choderalab.org
               </button>
             </a>
@@ -197,29 +211,9 @@
       </div><!-- header-right -->
       
     </div><!-- headerbar -->
+
+    <div data-bind='template: {name: currentPage.type()}'></div>
         
-    <div class="pageheader">
-      <!-- ko if: currentPage.type() === 'home' -->
-      <h2><i class="fa fa-home"></i>Home<span>homepage</span></h2>
-      <!-- /ko -->
-      <!-- ko if: currentPage.type() === 'target' -->
-      <h2><i class="fa fa-crosshairs"></i><sometext data-bind="text: dbtarget.uniprot.entry_name">Target protein</sometext><span data-bind="text: dbtarget.uniprot.ac"></span></h2>
-      <!-- /ko -->
-    </div>
-    
-    <div class="contentpanel">
-      <!-- content goes here... -->
-
-      <!-- <div data-bind="template: { name: 'panel-example-kinase-targets' }" class="row"></div> -->
-
-      <div data-bind="template: { name: currentPage.type() }" class="row"></div>
-
-      <!-- ko if: currentPage.type() == 'home' -->
-      <div data-bind="template: { name: 'alert-example-targets-on-left' }" class="row"></div>
-      <!-- /ko -->
-
-    </div><!-- contentpanel -->
-    
   </div><!-- mainpanel -->
   
 </section>

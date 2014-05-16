@@ -4,6 +4,8 @@ function viewModel() {
         type: ko.observable()
     }
 
+    self.currentURL = ko.observable();
+    self.newSearchString = ko.observable();
     self.dbURI = 'http://ec2-54-227-62-182.compute-1.amazonaws.com/kinomeDBAPI';
     self.dbtarget = new targetModel();
     self.currentTargetAC = ko.observable();
@@ -27,18 +29,12 @@ function viewModel() {
         return $.ajax(request);
     };
 
-    // Update the target AC URL hash
-    self.goToTarget = function (target_ac) { location.hash = target_ac };
-
-    self.currentURL = ko.observable();
-
-    // Client-side routes    
-    Sammy(function () {
+    self.sammyapp = Sammy(function () {
         this.get('target/:target_ac', function () {
             self.currentPage.type('target');
             self.currentURL('target/' + this.params.target_ac);
             self.currentTargetAC(this.params.target_ac);
-            self.ajax(self.dbURI + "/" + self.currentTargetAC(), 'GET').done(function(data) {
+            self.ajax(self.dbURI + '/' + self.currentTargetAC(), 'GET').done(function(data) {
                 self.dbtarget.updatedata(data);
             });
         });
@@ -49,12 +45,25 @@ function viewModel() {
             self.currentTargetAC(null);
         });
 
-    }).run();
+    });
+
+    self.sammyapp.run();
+    // self.sammyapp.run('kinomeDB/target/P00519');
+
+
+    self.searchHandler = function() {
+        if (true) {
+            href = 'target/' + self.newSearchString();
+            location.assign(href);
+        }
+    };
+
 
 }
 
 var vm = new viewModel();
 ko.applyBindings(vm);
+// vm.sammyapp.run('kinomeDB/target/P00519');
 
 // $(document).ready(function() {
 //     $('#pdbtable').dataTable({
