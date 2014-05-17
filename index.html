@@ -43,13 +43,13 @@
 <!-- TARGET view -->
   <script type='text/html' id='target'>
 
-    <!-- UNIPROT DATA -->
     <div class='pageheader'>
       <h2><i class='fa fa-crosshairs'></i><sometext data-bind='text: dbtarget.uniprot.entry_name'>Target protein</sometext><span data-bind='text: dbtarget.uniprot.ac'></span></h2>
     </div><!-- pageheader -->
     <div class="contentpanel">
       <div class="row"></div>
 
+        <!-- UNIPROT DATA -->
         <div class='col-sm-4'>
           <div class='panel panel-default'>
             <div class='panel-heading'>
@@ -113,6 +113,20 @@
           </div><!-- panel -->
         </div><!-- col -->
       </div><!-- row -->
+    </div><!-- contentpanel -->
+  </script>
+
+
+<!-- SEARCH RESULTS view -->
+  <script type='text/html' id='search_results'>
+
+    <div class='pageheader'>
+      <h2><i class='fa fa-search'></i>Search Results</h2>
+    </div><!-- pageheader -->
+    <div class="contentpanel">
+
+        <div>Your current search: <span data-bind='text: currentSearchString()'></span></div>
+
     </div><!-- contentpanel -->
   </script>
 
@@ -194,7 +208,7 @@
         <!-- <input type='text' class='form&#45;control' name='keyword' placeholder='Search here...' /> -->
       <!-- </form> -->
       <form class='searchform' data-bind='submit: searchHandler'>
-        <input type='text' class='form-control' placeholder='Search here...' data-bind='value: newSearchString' />
+        <input type='text' class='form-control' placeholder='Search here...' data-bind='value: currentSearchString' />
       </form>
       
       <div class='header-right'>
