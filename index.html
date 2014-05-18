@@ -130,11 +130,12 @@
     </div><!-- contentpanel -->
   </script>
 
+
   <script type="text/html" id="alert-example-targets-on-left">
     <div class="col-md-6">
       <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        Use the left-hand menu to see some example kinase targets.
+        Use the left-hand menu to see some example kinase targets, or try searching for UniProt ACs (e.g. P00519, P00533, P12931) in the search bar.
       </div>
     </div>
   </script>
@@ -227,6 +228,10 @@
     </div><!-- headerbar -->
 
     <div data-bind='template: {name: currentPage.type()}'></div>
+
+    <!-- ko: if currentPage.type() == 'home' -->
+    <div data-bind='template: {name: "alert-example-targets-on-left"}'></div>
+    <!-- /ko -->
         
   </div><!-- mainpanel -->
   
