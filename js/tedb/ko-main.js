@@ -43,6 +43,7 @@ function viewModel() {
 
         this.get('search', function () {
             self.currentPage.type('search_results');
+            self.currentURL('search?query=' + encodeURIComponent(this.params.query));
             self.currentSearchString(this.params.query);
             request_url = self.dbURI + 'search?query=' + self.currentSearchString();
             self.ajax(request_url, 'GET').done(function(data) {
