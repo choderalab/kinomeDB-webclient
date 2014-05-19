@@ -8,6 +8,7 @@ function viewModel() {
     self.currentSearchString = ko.observable();
     self.dbURI = 'http://ec2-54-227-62-182.compute-1.amazonaws.com/kinomeDBAPI/';
     self.dbtarget = new targetModel();
+    self.targetlist = new targetListModel();
     self.currentTargetAC = ko.observable();
     self.uniprot_href = ko.computed(function() {
         return "http://www.uniprot.org/uniprot/" + self.currentTargetAC();
@@ -40,11 +41,13 @@ function viewModel() {
             });
         });
 
-        this.get('search\?:search_param_string', function () {
+        this.get('search', function () {
             self.currentPage.type('search_results');
-            // TODO
-            self.currentSearchString(this.params.search_param_string);
-            alert(this.params.search_param_string);
+            self.currentSearchString(this.params.query);
+            request_url = self.dbURI + 'search?query=' + self.currentSearchString();
+            self.ajax(request_url, 'GET').done(function(data) {
+                self.targetlist.updatedata(data.results);
+            });
         });
 
         this.get('', function () {
@@ -60,8 +63,14 @@ function viewModel() {
 
 
     self.searchHandler = function() {
-        if (true) {
+        uniprot_ac_regex = new RegExp('[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}');
+        uniprot_ac_regex_result = uniprot_ac_regex.exec(self.currentSearchString());
+        if (uniprot_ac_regex_result != null) {
             href = 'target/' + self.currentSearchString();
+            location.assign(href);
+        }
+        else {
+            href = 'search?query=' + encodeURIComponent(self.currentSearchString());
             location.assign(href);
         }
     };

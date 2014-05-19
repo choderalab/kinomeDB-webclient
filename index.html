@@ -125,7 +125,38 @@
     </div><!-- pageheader -->
     <div class="contentpanel">
 
-        <div>Your current search: <span data-bind='text: currentSearchString()'></span></div>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h4 class='panel-title'>Search results</h4>
+        </div><!-- panel-heading -->
+        <div class='panel-body'>
+
+          <div>Your search: <span data-bind='text: currentSearchString()'></span></div>
+          <div>Number of targets found: <span data-bind='text: targetlist.targets().length'></span></div>
+          <br/>
+          <div class="table-responsive">
+            <table class="table" id="pdbtable">
+              <thead>
+                <tr>
+                  <th>UniProt AC</th>
+                  <th>UniProt entry_name</th>
+                  <th>family</th>
+                  <th>nPDBs</th>
+                </tr>
+              </thead>
+              <tbody data-bind='foreach: targetlist.targets()'>
+                <tr>
+                  <td><span data-bind='text: ac'/></a></td>
+                  <td><span data-bind='text: entry_name'/></a></td>
+                  <td><span data-bind='text: family'/></a></td>
+                  <td><span data-bind='text: npdbs'/></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div><!-- panel-body -->
+      </div><!-- panel -->
 
     </div><!-- contentpanel -->
   </script>
@@ -229,7 +260,7 @@
 
     <div data-bind='template: {name: currentPage.type()}'></div>
 
-    <!-- ko: if currentPage.type() == 'home' -->
+    <!-- ko if: currentPage.type() == 'home' -->
     <div data-bind='template: {name: "alert-example-targets-on-left"}'></div>
     <!-- /ko -->
         

@@ -37,3 +37,12 @@ function targetModel() {
         };
     };
 }
+
+function targetListModel() {
+    var self = this;
+    self.targets = ko.observableArray([]);
+
+    self.updatedata = function(data) {
+        self.targets(data);
+    };
+}
