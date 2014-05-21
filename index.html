@@ -142,14 +142,16 @@
                   <th>UniProt entry_name</th>
                   <th>family</th>
                   <th>nPDBs</th>
+                  <th>kinomeDB entry</th>
                 </tr>
               </thead>
               <tbody data-bind='foreach: targetlist.targets()'>
                 <tr>
-                  <td><span data-bind='text: ac'/></a></td>
-                  <td><span data-bind='text: entry_name'/></a></td>
-                  <td><span data-bind='text: family'/></a></td>
-                  <td><span data-bind='text: npdbs'/></a></td>
+                  <td><a data-bind='attr: {href: "http://www.uniprot.org/uniprot/" + ac, target: "_blank"}'><span data-bind='text: ac'/></a></td>
+                  <td><span data-bind='text: entry_name'/></td>
+                  <td><span data-bind='text: family'/></td>
+                  <td><span data-bind='text: npdbs'/></td>
+                  <td><a data-bind='attr: {href: "target/" + ac}'><span class='label label-primary' data-bind='text: entry_name'/></a></td>
                 </tr>
               </tbody>
             </table>
