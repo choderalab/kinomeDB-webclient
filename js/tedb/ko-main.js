@@ -6,7 +6,7 @@ function viewModel() {
 
     self.currentURL = ko.observable();
     self.currentSearchString = ko.observable();
-    self.dbURI = 'http://ec2-54-227-62-182.compute-1.amazonaws.com/kinomeDBAPI/';
+    self.dbURI = 'http://plfah2.mskcc.org/kinomeDBAPI/';
     self.dbtarget = new targetModel();
     self.targetlist = new targetListModel();
     self.currentTargetAC = ko.observable();
