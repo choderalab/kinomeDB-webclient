@@ -5,6 +5,7 @@ function targetModel() {
         entry_name: ko.observable(''),
         family: ko.observable(''),
     }
+    self.npubs = ko.observable('');
     self.ncbi_gene = ko.observableArray([]);
     self.ensembl_gene = ko.observableArray([]);
     self.hgnc = ko.observableArray([]);
@@ -14,6 +15,7 @@ function targetModel() {
         self.uniprot.ac(data.uniprot.ac);
         self.uniprot.entry_name(data.uniprot.entry_name);
         self.uniprot.family(data.uniprot.family);
+        self.npubs(data.npubs);
 
         self.ncbi_gene([]);
         for (i in data.ncbi_gene) {

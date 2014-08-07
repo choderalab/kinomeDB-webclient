@@ -66,13 +66,16 @@
           </div><!-- panel -->
         </div><!-- col -->
     
-        <!-- OTHER DATABASES -->
+        <!-- OTHER DATA -->
         <div class='col-sm-4'>
           <div class='panel panel-default'>
             <div class='panel-heading'>
-              <h4 class='panel-title'>Other databases</h4>
+              <h4 class='panel-title'>Other data</h4>
             </div><!-- panel-heading -->
             <div class='panel-body'>
+              <ul>
+                <li>Number of publications: <span data-bind='text: dbtarget.npubs'></span></li>
+              </ul>
               <ul data-bind='foreach: dbtarget.hgnc()'>
                 <li>HGNC Gene ID: <span data-bind='text: gene_id'></span></li>
                 <li>HGNC Approved Symbol: <span data-bind='text: approved_symbol'></span></li>
@@ -143,6 +146,7 @@
                   <th>UniProt entry_name</th>
                   <th>family</th>
                   <th>nPDBs</th>
+                  <th>npubs</th>
                   <th>kinomeDB entry</th>
                 </tr>
               </thead>
@@ -152,6 +156,7 @@
                   <td><span data-bind='text: entry_name'/></td>
                   <td><span data-bind='text: family'/></td>
                   <td><span data-bind='text: npdbs'/></td>
+                  <td><span data-bind='text: npubs'/></td>
                   <td><a data-bind='attr: {href: "target/" + ac}'><span class='label label-primary' data-bind='text: entry_name'/></a></td>
                 </tr>
               </tbody>
